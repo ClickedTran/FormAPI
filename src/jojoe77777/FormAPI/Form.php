@@ -31,6 +31,25 @@ abstract class Form implements IForm{
     public function sendToPlayer(Player $player) : void {
         $player->sendForm($this);
     }
+    
+    /**
+     * @param string $text
+     */
+    public function addHeader(string $text) : void{
+      $this->data["content"][] = ["type" => "header", "text" => $text];
+    }
+    
+    public function addDivider() : void{
+      $this->data["content"][] = ["type" => "divider", "text" => ""];
+    }
+    
+    /**
+     * @param string $texr
+     * @return $this
+     */
+     public function setSubmitButton(string $text) : void{
+       $this->data["submit"] = $text;
+     }
 
     public function getCallable() : ?callable {
         return $this->callable;
